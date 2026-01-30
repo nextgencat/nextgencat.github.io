@@ -1,0 +1,120 @@
+:root {
+    --mesh-col: #1a1a1a;
+    --mesh-col-hg: #cacaca;
+    --container-border: #9e9e9e;
+    --container-shadow: #2e2e2e;
+    --pfp-border: #ffffff;
+    --bg-col: rgba(0, 0, 0, 0.3);
+
+    --btn-color: #fff;
+    --btn-bg-hg: #fff;
+    --btn-color-hg: #000;
+
+    --noise-bg: linear-gradient(var(--bg-col), var(--bg-col)), url("img/noise-light.png");
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000;
+    background-image: 
+    linear-gradient(var(--mesh-col) 2px, transparent 2px),
+    linear-gradient(90deg, var(--mesh-col) 2px, transparent 2px);
+    background-size: 50px 50px;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #fff;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 15px;
+    backdrop-filter: blur(3px);
+    border: 2px dashed var(--container-border);
+    box-shadow: 0 0 15px var(--container-shadow);
+    gap: 1rem;
+    width: 900px;
+    animation: test 5s ease infinite;
+}
+
+.profile {
+    position: relative;
+    width: 100%;
+    height: 250px;  
+    object-fit: fill;
+}
+
+.profile .banner {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+}
+
+.container .pfp {
+    left: 1rem;
+    bottom: 1rem;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    position: absolute;
+    border: 2px solid var(--pfp-border);
+}
+
+.other {
+    display: flex; 
+    width: 100%;
+    justify-content: flex-start;
+    flex-direction: column;
+    border-bottom: 2px solid var(--container-border);
+}
+
+.other h1 {
+    font-family: Bitcount Single;
+    font-weight: 300;
+    font-size: 2.5rem;
+    letter-spacing: 3px;
+}
+
+.other p {
+    font-family: "Zalando Sans Expanded";
+    font-size: 1.1rem;
+    font-weight: 300;
+    padding-bottom: 1rem;
+    max-width: 500px;
+}
+
+.link-buttons {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+
+.link-buttons button {
+    height: 40px;
+    padding: 0 1rem;
+    background: transparent;
+    border: 1px solid var(--btn-bg-hg);
+    color: var(--btn-color);
+    font-family: "Zalando Sans Expanded";
+    font-weight: 400;
+    border-radius: 10px;
+    transition: 0.3s ease-out;
+}
+
+.link-buttons button:hover {
+    background: var(--btn-bg-hg);
+    color: var(--btn-color-hg);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    transform: scale(1.1) translateY(-3px) rotate(1deg);
+}
