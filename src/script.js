@@ -26,6 +26,7 @@ function typeAnimation(texto, element, delay) {
 }
 
 function start() {
+    videoBG.play();
     overlay.style.animation = "hideOverlay 0.5s ease forwards";
     addEventListener("animationend", () => {
         overlay.style.pointerEvents = "none";
@@ -70,5 +71,4 @@ function openLink(target) {
     }, 310);
 }
 
-videoBG.play();
 typeAnimation(text1, overlayText, 40);
