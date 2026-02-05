@@ -3,36 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>nextgencat - bio</title>
+    <title>nextgencat</title>
     <link rel="stylesheet" href="src/styles.css">
-    <link rel="icon" type="image/x-icon" href="src/img/icon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Single:wght@100..900&family=Zalando+Sans+Expanded:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&family=Playwrite+NZ+Basic:wght@100..400&display=swap" rel="stylesheet">
 
 </head>
 <body>
-    <div class="container">
-        <header class="profile">
-            <img class="banner" src="src/img/banner.jpg">
-            <img class="pfp" src="src/img/pfp.jpg">
-            <div class="name">
+    <div class="bio-background">
+        <video id="videoBG" loop muted>
+            <source src="src/video/Wavy Grass 4K60FPS.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div id="container" class="container">
+        <div id="profile-container" class="profile-container">
+            <div class="bio-profile">
+            <div class="bio-head">
+                <img class="bio-icon" src="src/img/pfp.jpg">
+                <div class="bio-info">
+                    <h1>nextgencat</h1>
+                    <p id="description">Hello my name is nextgencat Hello my name is nextgencat Hello my name is nextgencat Hello my name is nextgencat</p>
+                </div>
             </div>
-        </header>
-        <div class="other">
-            <h1>nextgencat</h1>
-            <p id="desc"></p>
         </div>
-        <div class="link-buttons">
-            <!-- <button onclick="dc()">Discord</button> -->
-            <button onclick="tg()">Telegram</button>
-            <button onclick="gh()">GitHub</button>
+        <div class="bio-buttons">
+            <div class="left">
+                <button onclick="openLink('tg')">Telegram</button>
+                <button onclick="openLink('gh')">GitHub</button>
+            </div>
+            <div class="right">
+                <button onclick="openLink('donate')">Donate 🙏</button>
+            </div>
+        </div>
         </div>
     </div>
 
-    <div class="overlay" id="overlay" onclick="start()">
-        <p>Click to proceed..</p>
+    <div onclick="start()" id="overlay" class="overlay">
+        <p id="overlayText">Click to proceed..</p>
     </div>
 
     <script src="src/script.js"></script>

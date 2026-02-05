@@ -1,38 +1,74 @@
-const tg_link = "https://t.me/nextgencat";
-const dc_link = "https://discord.gg/"
-const gh_link = "https://github.com/nextgencat"
+var videoBG = document.getElementById("videoBG");
+var overlay = document.getElementById("overlay");
+var description = document.getElementById("description");
+var overlayText = document.getElementById("overlayText");
+var container = document.getElementById("container");
 
-const text = "haii!! my name is nextgencat. Now im learning html, css & js";
-const el = document.getElementById("desc");
-let i = 0;
+const text = "just chill guy.\nLanguages i use: C#, XAML, C++, HTMl, CSS and JS";
+const text1 = "Click to proceed"
 
-function type() {
-    if (i < text.length) {
-        el.textContent += text[i];
+var clickSound = new Audio('src/sounds/click.mp3');
+var hoverSound = new Audio('src/sounds/hover.mp3')
+description.textContent = "";
+overlayText.textContent = "";
+
+function typeAnimation(texto, element, delay) {
+    let i = 0;
+    function step() {
+        if (i < texto.length) {
+        element.textContent += texto.charAt(i);
         i++;
-        setTimeout(type, 50);
+        setTimeout(step, delay);
+        }
     }
+    element.textContent = "";
+    step();
 }
-
-function tg() {
-    window.open(tg_link, '_blank')
-}
-
-function dc() {
-    window.open(dc_link, '_blank')
-}
-
-function gh() {
-    window.open(gh_link, '_blank')
-}
-
-const overlayEl = document.getElementById("overlay");
 
 function start() {
-    overlayEl.style.animation = "overlayOut 0.7s ease forwards";
-    overlayEl.addEventListener('animationend', () => {
-        overlayEl.remove();
-        type();
+    overlay.style.animation = "hideOverlay 0.5s ease forwards";
+    addEventListener("animationend", () => {
+        overlay.style.pointerEvents = "none";
+        overlay.remove();
+        typeAnimation(text, description, 10);
     }, {once: true});
-
 }
+
+container.addEventListener('mouseover', (event) => {
+
+    if (event.target.closest("BUTTON") || event.target.id === "profile-container") {
+    hoverSound.currentTime = 0;
+    hoverSound.play().catch(() => {});
+}
+});
+
+function openLink(target) {
+    let link = "";
+    const btn = event.currentTarget;
+
+    clickSound.currentTime = 0;
+    clickSound.play();
+
+    btn.style.animation = "none"
+    void btn.offsetWidth;
+    btn.style.animation = "clickAnim 0.3s ease"
+    
+    switch(target) {
+        case "tg":
+            link = "https://t.me/nextgencat";
+            break;
+        case "gh": 
+            link = "https://github.com/nextgencat";
+            break;
+        case "donate":
+
+            break;
+    }
+
+    setTimeout(() => {
+        window.open(link, "_blank");
+    }, 310);
+}
+
+videoBG.play();
+typeAnimation(text1, overlayText, 40);
