@@ -4,7 +4,7 @@ var description = document.getElementById("description");
 var overlayText = document.getElementById("overlayText");
 var container = document.getElementById("container");
 
-const text = "just chill guy.\nLanguages i use: C#, XAML, C++, HTMl, CSS and JS";
+const text = "just chill guy.\nLanguages i use: C#, XAML, C++, HTML, CSS and JS";
 const text1 = "Click to proceed"
 
 var clickSound = new Audio('src/sounds/click.mp3');
