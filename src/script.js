@@ -1,74 +1,62 @@
-var videoBG = document.getElementById("videoBG");
-var overlay = document.getElementById("overlay");
-var description = document.getElementById("description");
-var overlayText = document.getElementById("overlayText");
-var container = document.getElementById("container");
+const cursor = document.getElementById("cursor");
+const overlay = document.getElementById("overlay");
+const sound = new Audio("./src/sounds/bedrott.mp3");
+sound.loop = true;
+sound.volume = 0.1;
 
-const text = "just a chill guy.\nLanguages i use: C#, XAML, C++, HTML, CSS and JS";
-const text1 = "Click to proceed"
+let mouseX = 0;
+let mouseY = 0;
 
-var clickSound = new Audio('src/sounds/click.mp3');
-var hoverSound = new Audio('src/sounds/hover.mp3')
-description.textContent = "";
-overlayText.textContent = "";
+let currentX = 0;
+let currentY = 0;
 
-function typeAnimation(texto, element, delay) {
-    let i = 0;
-    function step() {
-        if (i < texto.length) {
-        element.textContent += texto.charAt(i);
-        i++;
-        setTimeout(step, delay);
-        }
-    }
-    element.textContent = "";
-    step();
-}
+let isPlaying = false;
 
-function start() {
-    videoBG.play();
-    overlay.style.animation = "hideOverlay 0.5s ease forwards";
-    addEventListener("animationend", () => {
-        overlay.style.pointerEvents = "none";
-        overlay.remove();
-        typeAnimation(text, description, 10);
-    }, {once: true});
-}
-
-container.addEventListener('mouseover', (event) => {
-
-    if (event.target.closest("BUTTON") || event.target.id === "profile-container") {
-    hoverSound.currentTime = 0;
-    hoverSound.play().catch(() => {});
-}
+document.addEventListener("mousemove", (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
 });
 
-function openLink(target) {
-    let link = "";
-    const btn = event.currentTarget;
+function smoothCursor() {
+    currentX += (mouseX - currentX) * 0.15;
+    currentY += (mouseY - currentY) * 0.15;
 
-    clickSound.currentTime = 0;
-    clickSound.play();
+    cursor.style.left = currentX + "px";
+    cursor.style.top = currentY + "px";
 
-    btn.style.animation = "none"
-    void btn.offsetWidth;
-    btn.style.animation = "clickAnim 0.3s ease"
-    
-    switch(target) {
-        case "tg":
-            link = "https://t.me/nextgencat";
-            break;
-        case "gh": 
-            link = "https://github.com/nextgencat";
-            break;
-        case "donate":
-
-            break;
-    }
-
-    setTimeout(() => {
-        window.open(link, "_blank");
-    }, 310);
+    requestAnimationFrame(smoothCursor);
 }
 
-typeAnimation(text1, overlayText, 40);
+function musicControl() {
+    if (!isPlaying) {
+        sound.play();
+    } else if (isPlaying) {
+        sound.pause();
+    }
+    isPlaying = !isPlaying;
+}
+
+overlay.addEventListener("click", () => {
+    overlay.style.animation = "overlayAnim 1s ease forwards";
+    sound.play();
+    setTimeout(() => {
+        overlay.remove();
+        isPlaying = true;
+    }, 1000);
+
+});
+
+function openLink(type) {
+    switch(type) {
+        case 0:
+            window.open("https://github.com/nextgencat", "_blank");
+            break;
+        case 1:
+            window.open("https://t.me/nextgencat", "_blank");
+            break;
+        default:
+            console.warn("Unknown link type:", type);
+    }
+}
+
+smoothCursor();

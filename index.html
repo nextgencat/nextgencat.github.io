@@ -6,44 +6,93 @@
     <title>nextgencat</title>
     <link rel="stylesheet" href="src/styles.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/4.0.0/uicons-brands/css/uicons-brands.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/4.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&family=Playwrite+NZ+Basic:wght@100..400&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="bio-background">
-        <video id="videoBG" loop muted>
-            <source src="src/video/Wavy Grass 4K60FPS.mp4" type="video/mp4">
-        </video>
-    </div>
-
-    <div id="container" class="container">
-        <div id="profile-container" class="profile-container">
-            <div class="bio-profile">
-            <div class="bio-head">
-                <img class="bio-icon" src="src/img/pfp.jpg">
-                <div class="bio-info">
-                    <h1>nextgencat</h1>
-                    <p id="description">Hello my name is nextgencat Hello my name is nextgencat Hello my name is nextgencat Hello my name is nextgencat</p>
+    <img id="cursor" src="src/img/Cursor.png">
+    <div class="main">
+        <div class="main-container">
+            <div class="bio">
+                <div class="left-panel">
+                    <div class="links">
+                        <button class="link-button" onclick="openLink(0)">
+                            <i class="fi fi-brands-github"></i>
+                        </button>
+                        <button class="link-button" onclick="openLink(1)">
+                            <i class="fi fi-brands-telegram"></i>
+                        </button>
+                    </div>
+                    <button class="music-button" onclick="musicControl()">
+                        <i class="fi fi-sr-volume"></i>
+                    </button>
+                </div>
+                <div class="right-panel">
+                    <div class="banner">
+                        <img class="pfp" src="src/img/pfp.jfif">
+                    </div>
+                    <div class="profile">
+                        <div class="all-info">
+                            <div class="profile-name">
+                                <h1>nextgencat</h1>
+                            </div>
+                            <div class="profile-info">
+                                <p>
+                                    Hello! I’m nextgencat.
+                                    <span class="divide"></span>
+                                    I enjoy building things and turning ideas
+                                    into real projects that actually work and
+                                    feel good to use. I like experimenting, 
+                                    improving what I make, and always learning
+                                    something new along the way.
+                                </p>
+                            </div>
+                            <span class="divide"></span>
+                            <div class="tech-stack">
+                                <h2>Languages I use</h2>
+                                <div class="card-container">
+                                    <div class="card">
+                                        <img src="src/img/icons/html.png">
+                                        <h1>HTML5</h1>
+                                        <p>Advanced</p>
+                                    </div>
+                                    <div class="card">
+                                        <img src="src/img/icons/css-3.png">
+                                        <h1>CSS3</h1>
+                                        <p>Advanced</p>
+                                    </div>
+                                    <div class="card">
+                                        <img src="src/img/icons/js.png">
+                                        <h1>JavaScript</h1>
+                                        <p>Intermediate</p>
+                                    </div>
+                                    <div class="card">
+                                        <img src="src/img/icons/c-.png">
+                                        <h1>C++</h1>
+                                        <p>Intermediate</p>
+                                    </div>
+                                    <div class="card">
+                                        <img src="src/img/icons/c-sharp.png">
+                                        <h1>C#</h1>
+                                        <p>Intermediate</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="bio-buttons">
-            <div class="left">
-                <button onclick="openLink('tg')">Telegram</button>
-                <button onclick="openLink('gh')">GitHub</button>
-            </div>
-            <div class="right">
-                <button onclick="openLink('donate')">Donate 🙏</button>
-            </div>
-        </div>
-        </div>
     </div>
 
-    <div onclick="start()" id="overlay" class="overlay">
-        <p id="overlayText">Click to proceed..</p>
+    <div class="overlay" id="overlay">
+        <div class="overlay-text">
+            <h1>Click to enter..</h1>
+            <p>Music starts after click</p>
+        </div>
     </div>
 
     <script src="src/script.js"></script>

@@ -1,12 +1,25 @@
 :root {
-    --color: #fff;
-    --shadow-col: rgba(0, 0, 0, 0.5);
-    --border-col: rgba(255, 255, 255, 0.1);
+    --body-bg: #000;
 
-    --hg-col: #fff;
-    --hvr-bg: rgba(255,255,255,0.1);
+    --grid-col: rgb(41, 41, 41);
+    --main-grid: linear-gradient(var(--grid-col) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-col) 1px, transparent 1px);
+    --main-bg: linear-gradient(rgba(25, 25, 25, 0.8), #050505, rgba(25, 25, 25, 0.8));
 
-    --text-glow: rgba(255,255,255,0.5);
+    --divide: #242424;
+
+    --panel-brd-top: rgba(102, 102, 102, 0.25);
+    --panel-brd-btm: rgba(102, 102, 102, 0.1);
+    --panel-bg: radial-gradient(circle at center, rgba(37, 37, 37, 0.1), transparent);
+
+    --pfp-glow: 255,255,255;
+
+    --title: #fff;
+    --title-glow: 255,255,255;
+    --desc: #b6b6b6;
+
+    --link-icon: #ffffff;
+    --card-glow: 255,255,255;
 }
 
 * {
@@ -15,175 +28,365 @@
     box-sizing: border-box;
 }
 
-.bio-background {
-    width: 100%;
+body {
+    background-color: var(--body-bg);
+    cursor: none;
+    color: #fff;
+}
+
+#cursor {
+    position: fixed;
+    width: 16px;
+    height: 16px;
+    z-index: 9999;   
+    user-select: none;
+    pointer-events: none;
+}
+
+.main {
     height: 100vh;
-    overflow: hidden;
-    position: relative;
+    background: var(--main-grid);
+    background-repeat: repeat;
+    background-size: 50px 50px;
 }
 
-.bio-background video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+.main-container {
+    height: 100vh;
+    background: var(--main-bg);
+    background-size: 200% 200%;
+    animation: mainAnim 10s ease infinite;
 
-/* CONTAINER */
-
-.container {
-    position: absolute;
-    inset: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@keyframes mainAnim {
+    0% {
+        background-position: 0% 15%;
+    }
+    50% {
+        
+        background-position: 0% 100%;
+    }
+    100% {
+        
+        background-position: 0% 15%;
+    }
+}
+
+.bio {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 1200px;
+    padding: 1rem;
+    gap: 5px;
+    justify-content: center;
+}
+
+.left-panel {
+    display: flex;
+    flex-direction: column;
+    background: var(--panel-bg);
+    backdrop-filter: blur(5px);
+    justify-content: space-between;
+
+    border-top: 1px solid var(--panel-brd-top);
+    border-left: 1px solid var(--panel-brd-top);
+    border-bottom: 1px solid var(--panel-brd-btm);
+    border-right: 1px solid var(--panel-brd-btm);
+
+    border-radius: 15px;
+    padding: 10px 5px;
+    
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.link-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 5px;
+    background-color: transparent;
+    border: none;
+    cursor: none;
+    color: var(--link-icon);
+
+    transition: 0.4s ease;
+}
+
+.link-button:hover {
+    transform: scale(1.08);
+    text-shadow: 0 0 14px rgba(var(--title-glow), 0.3);
+}
+
+.link-button i {
+    font-size: 1.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.music-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+
+    background: var(--panel-bg);
+    backdrop-filter: blur(5px);
+
+    border-top: 1px solid var(--panel-brd-top);
+    border-left: 1px solid var(--panel-brd-top);
+    border-bottom: 1px solid var(--panel-brd-btm);
+    border-right: 1px solid var(--panel-brd-btm);
+
+    border-radius: 16px;
+    transition: 0.4s ease;
+    cursor: none;
+}
+
+.music-button:hover {
+    transform: scale(1.08);
+    text-shadow: 0 0 14px rgba(var(--title-glow), 0.3);
+}
+
+
+.music-button i {
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--link-icon);
+}
+
+    
+.right-panel {
+    background: var(--panel-bg);
+    backdrop-filter: blur(5px);
+
+    border-top: 1px solid var(--panel-brd-top);
+    border-left: 1px solid var(--panel-brd-top);
+    border-bottom: 1px solid var(--panel-brd-btm);
+    border-right: 1px solid var(--panel-brd-btm);
+
+    border-radius: 15px;
+}
+
+.profile {
+    display: flex;
+}
+
+.banner {
+    width: 100%;
+    height: 200px;
+    border-radius: 15px 15px 0 0;
+    position: relative;
+    background-repeat: no-repeat;
+    background-image: url("img/banner.gif");
+    background-size: cover;
+    background-position: center;
+    user-select: none;
+    border-bottom: 1px solid var(--panel-brd-top);
+}
+
+.pfp {
+    width: 128px;
+    height: 128px;
+    bottom: 1rem;
+    left: 1rem;
+    position: absolute;
+    border-radius: 64px;
+    box-shadow: 0 0 25px rgba(var(--pfp-glow), 0.2);
+    border: 1px solid rgba(var(--pfp-glow), 1);
+    user-select: none;
+}
+
+.all-info {
+    display: flex;
     flex-direction: column;
     padding: 10px;
 }
 
-.profile-container {
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0px;
+}
+
+.profile-name {
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-name h1 {
+    font-family: "Manrope", monospace;
+    color: var(--title);
+    text-shadow: 0 0 12px rgba(var(--title-glow), 0.2);
+}
+
+.profile-info p {
+    max-width: 650px;
+    font-size: 1rem;
+    font-family: "Manrope", monospace;
+    color: var(--desc);
+}
+
+.divide {
+    display: block;
+    height: 1px;
+    width: 100%;
+    background-color: var(--divide);
+    margin: 5px 0px;
+}
+
+.tech-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.tech-stack h2 {
+    font-size: 1.3rem;
+    font-family: "Manrope", monospace;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.card {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-}
 
-/* bio-profile container */
+    background: var(--panel-bg);
+    backdrop-filter: blur(5px);
 
-.bio-profile {   
-    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--panel-brd-top);
+    border-left: 1px solid var(--panel-brd-top);
+    border-bottom: 1px solid var(--panel-brd-btm);
+    border-right: 1px solid var(--panel-brd-btm);
+
     border-radius: 15px;
-    padding: 1rem;
-    max-width: 1000px;
-    box-shadow: 0 0 25px var(--shadow-col);
-    border: 1px solid var(--border-col);
-    transition: 0.3s ease;
+    padding: 10px 10px;
+    gap: 5px;
+    min-width: 90px;
+
+    transition: 0.4s ease;
 }
 
-.bio-profile:hover {
-    transform: scale(1.02);
-    border: 1px solid var(--hg-col);
+.card:hover {
+    transform: scale(1.05);
+    border: 1px solid rgba(var(--card-glow), 0.6);
+    box-shadow: 0 0 16px rgba(var(--card-glow), 0.1);
 }
 
-/* bio head elements ПОТУЖНОМІР РАЗ'ЄБАЛО (нє) */
-
-.bio-head {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
+.card:hover img {
+    transform: scale(1.1) translateY(-2px);
 }
 
-.bio-icon {
-    border-radius: 50%;
-    height: 128px;
-    border: 2px solid var(--border-col);
-    transition: 0.3s ease;
+.card img {
+    width: 32px;
+    height: 32px;
+    transition: 0.4s ease;
 }
 
-.bio-icon:hover {
-    border: 2px solid var(--color);
+.card h1 {
+    font-size: 1rem;
+    font-family: "Manrope", monospace;
+    letter-spacing: 1px;
+    color: var(--title);
 }
 
-.bio-info {
-    color: var(--color);
+.card p {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    font-family: "Manrope", monospace;
+    color: var(--desc);
 }
-
-.bio-info h1 {
-    font-family: "Playpen Sans";
-    text-shadow: 0 0 12px var(--text-glow);
-}
-
-.bio-info p {
-    font-family: "Playwrite NZ Basic";
-    font-weight: 550;
-    max-width: 700px;
-    white-space: pre-wrap;
-}
-
-/* bio buttons, and its NOTTT bio-profile element */
-
-.bio-buttons {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.bio-buttons .left {
-    display: flex;
-    gap: 10px;
-}
-
-.bio-buttons .right {
-    display: flex;
-    gap: 10px;
-}
-
-.bio-buttons button {
-    height: 40px;
-    padding: 0 1rem 0 1rem;
-    color: var(--color);
-    font-family: "Playwrite NZ Basic";
-    background-color: transparent;
-    border: 1px solid var(--border-col);
-    box-shadow: 0 0 25px var(--shadow-col);
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    cursor: pointer;
-    transition: 0.3s ease;
-    background: var(--bg);
-    
-}
-
-.bio-buttons button:hover {
-    transform: scale(1.1);
-    border: 1px solid var(--hg-col);
-    background: var(--hvr-bg);
-}
-
-@keyframes clickAnim {
-    0% {
-        transform: scale(1.1);
-    }
-    50% {
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(1.1);
-    }
-
-}
-
-/* OVERLAY!!!!!! */
 
 .overlay {
     position: absolute;
-    inset: 0;
-    backdrop-filter: blur(20px);
-    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
+    inset: 0;
+    backdrop-filter: blur(20px);
+    opacity: 1;
+    z-index: 99;
+}
+
+@keyframes overlayAnim {
+    to {
+        backdrop-filter: blur(0px);
+        opacity: 0;
+    }
+}
+
+.overlay-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: overlayTextAnim 5s ease infinite;
+}
+
+.overlay-text h1 {
+    font-size: 2rem;
+    letter-spacing: 1px;
+    font-family: "Manrope", monospace;
+    color: var(--title);
 }
 
 .overlay p {
-    color: var(--color);
-    font-family: "Playwrite NZ Basic";
-    font-size: 25px;
-    text-shadow: 0 0 12px var(--text-glow);
-    transition: 0.5s ease;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    font-family: "Manrope", monospace;
+    color: var(--desc);
 }
 
-.overlay p:hover {
-    transform: scale(1.1) rotate(1deg);
-}
-
-@keyframes hideOverlay {
+@keyframes overlayTextAnim {
     0% {
-        opacity: 1;
+        transform: rotate(3deg);
+        text-shadow: 0 0 15px rgba(var(--title-glow), 0);
+    }
+    50% {
+        transform: rotate(-2deg) scale(1.1);
+        text-shadow: 0 0 15px rgba(var(--title-glow), 0.5);
     }
     100% {
-        backdrop-filter: none;
-        opacity: 0;
+        transform: rotate(3deg);
+        text-shadow: 0 0 15px rgba(var(--title-glow), 0);
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .bio {
+        flex-direction: column;
+    }
+
+    .left-panel {
+        flex-direction: row;
+    }
+
+    .links {
+        flex-direction: row;
+    }
+    
+    .card-container {
+        flex-wrap: wrap;
     }
 }
